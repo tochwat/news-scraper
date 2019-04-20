@@ -1,0 +1,28 @@
+{
+  "name": "news-scraper",
+  "version": "1.0.0",
+  "description": "A web app using express, mongo, cheerio and axios that lets users view and leave comments on a news feed.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tochwat/news-scraper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tochwat/news-scraper/issues"
+  },
+  "homepage": "https://github.com/tochwat/news-scraper#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "mongoose": "^5.5.2",
+    "morgan": "^1.9.1"
+  }
+}
