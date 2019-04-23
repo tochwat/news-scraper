@@ -13,7 +13,7 @@ $(function() {
       event.preventDefault();
 
       // $('.articlesScrapedBody').empty();
-      $('#articles').empty();
+      $('.articlesScrapedBody').empty();
       
 
       $.ajax("/api/all", {
@@ -47,7 +47,7 @@ $(function() {
                   }
 
                   else {
-                      newText.text(numberChanged + " new articles scraped!")
+                      newText.text(numberChanged + " new articles scraped")
                       $('.articlesScrapedBody').append(newText)
                       $('#scrapeArticlesModal').modal('show');
                   }
@@ -59,6 +59,27 @@ $(function() {
 
   });
 
+  // When you click the clear button
+  $(document).on("click", "#clear-articles-btn", function() {
+    event.preventDefault();
+    console.log("Clicked CLEAR BUTTON!");
+    $.ajax("/api/clear", {
+      type: "GET"
+    }).then(function(response) {
+      $('#clearArticlesModal').modal('show');
+    })
+
+  });
+
+  $(".closeModalButton").on("click", function(event) {
+    event.preventDefault();
+    $.ajax("/", {
+        type: "GET"
+    }).then(function() {
+        location.reload();
+        console.log("page reloaded")
+    })
+  });
 
   // Whenever someone clicks a p tag
   $(document).on("click", "p", function() {
@@ -124,23 +145,6 @@ $(function() {
   });
 
 
-  // When you click the clear button
-  $(document).on("click", "#clear-articles-btn", function() {
-    console.log("Clicked CLEAR BUTTON!");
-    var MongoClient = require('mongodb').MongoClient;
-    var url = "mongodb://localhost/unit18Populater";
-
-    MongoClient.connect(url, function(err, db) {
-      if (err) throw err;
-      var dbo = db.db("mydb");
-      dbo.collection("articles").drop(function(err, delOK) {
-        if (err) throw err;
-        if (delOK) console.log("Collection deleted");
-        db.close();
-      });
-    });
-
-
-  });
+  
 
 })
