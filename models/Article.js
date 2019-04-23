@@ -15,10 +15,12 @@ var ArticleSchema = new Schema({
     required: true
   },
   summary: {
-    type: String
+    type: String,
+    required: true
   },
   photo: {
-		type: String
+		type: String,
+    required: true
 	},
 	date: {
 		type: Date

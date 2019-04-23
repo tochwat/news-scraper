@@ -11,12 +11,12 @@ module.exports = function (app) {
     // A POST route for scraping the website
     app.post("/api/scrape", function(req, res) {
         // First, grab the body of the html with axios
-        axios.get("http://www.npr.org/sections/news/").then(function(response) {
+        axios.get("https://www.theonion.com/").then(function(response) {
         // Load into cheerio and save it to $ as a shorthand selector
         var $ = cheerio.load(response.data);
     
         // Now, we grab every h2 with the c-entry class, and do the following:
-        $("article.item").each(function(i, element) {
+        $("article.post-item-frontpage").each(function(i, element) {
 
             // Save an empty result object
             // var result = {};
@@ -27,11 +27,11 @@ module.exports = function (app) {
             // result.link = $(this)
             // .children().attr("href");
 
-            let title = $(element).find('.item-info').find('.title').find('a').text();
-            let summary = $(element).find('.item-info').find('.teaser').find('a').text();
-            let link = $(element).find('.item-info').find('.title').children().attr("href");
-            let photo = $(element).find('.item-image').find('.imagewrap').find('a').find('img').attr("src");
-            let date = $(element).find('.item-info').find('.teaser').find('a').find('time').attr("datetime");
+            let title = $(element).find('.headline').text();
+            let summary = $(element).find('.item__content').find('.excerpt').children().text();
+            let link = $(element).find('.headline').children().attr("href");
+            let photo = $(element).find('.item__content').find('.img-wrapper').find('source').attr("data-srcset");
+            let date = $(element).find('.meta--pe').find('time').attr("datetime");
 
             let result = {
                 title: title,
@@ -51,7 +51,7 @@ module.exports = function (app) {
                 // If an error occurred, log it
                 console.log(err);
             });
-            
+
         });
     
         // Send a message to the client
