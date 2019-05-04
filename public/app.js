@@ -71,6 +71,7 @@ $(function() {
 
   });
 
+  //Event listener for close-modal buttons
   $(".closeModalButton").on("click", function(event) {
     event.preventDefault();
     $.ajax("/", {
