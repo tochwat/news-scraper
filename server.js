@@ -1,4 +1,5 @@
 var express = require("express");
+var bodyParser = require("body-parser");
 var exphbs  = require('express-handlebars');
 var logger = require("morgan");
 var mongoose = require("mongoose");
@@ -12,6 +13,9 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoArticles"
 
 // Initialize Express
 var app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 // Initialize express-handlebars
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));

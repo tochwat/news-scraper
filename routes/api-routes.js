@@ -125,6 +125,23 @@ module.exports = function (app) {
             res.json(err);
         });
     });
+
+
+    //save article ID for list of saved articles
+    app.put("/api/save/article/:id", (req, res) => {
+        let articleId = req.params.id;
+        db.Article.findOneAndUpdate({
+            _id: articleId
+        }, {
+            $set: {
+                saved: true
+            }
+        }).then(function (result) {
+            res.json(result)
+        })
+    });
+
+
     
     // delete
     app.delete("/api/reduce", (req, res) => {
@@ -174,6 +191,11 @@ module.exports = function (app) {
             })
 
     });
+
+    
+
+
+
 }
 
 
