@@ -9,22 +9,10 @@ body {
     padding-top: 5%;
 }
 
-/* #articles {
-    display: inline-block;
-    overflow: auto;
-    width: 60%;
-    height: 700px;
-}
-
-#notes {
-    float: right;
-    width: 30%;
-} */
 
 textarea, input {
     display: block;
     width: 100%;
-    background-color: #FCF5C7;
 }
 
 input {
@@ -35,6 +23,14 @@ input {
 textarea {
     height: 200px;
     font-size: 18px;
+}
+
+.card {
+    margin: 20px 0;
+}
+
+.articleColumn{
+    margin: 50px 0;
 }
 
 .articleImage {

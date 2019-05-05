@@ -1,0 +1,113 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">The Onion News Scraper</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/saved">Saved Articles <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="articleContainer">
+    <div class="row">
+
+        <div class="col-1">
+        </div>
+
+        <div class="col-10 articleColumn">
+            
+            {{#each articles}}
+
+                <div class="card">
+                    <div class="card-header">
+                        <a class="headlineLink" href={{link}} target="_blank">{{title}}</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <img class="articleImage" src={{photo}}>
+                            </div>
+
+                            <div class="col-5">
+                                <p>{{summary}}{{date}}</p>
+                            </div>
+
+                            <div class="col-2 buttonColumn">
+                                <button type="button" class="btn btn-primary deleteArticleButton" data-id={{id}}>Delete Article</button>
+                                <button type="button" class="btn btn-primary notesButton" data-id={{id}}>Notes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {{/each}}
+        </div>
+
+        <div class="col-1">
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="articleDeletedModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title articleDeletedTitle">Article Deleted</h5>
+      </div>
+      <div class="modal-body articleDeletedBody">
+        <p>This article has been removed from your Saved Articles.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary closeModalButton" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="noteModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Article Notes</h5>
+      </div>
+      <div class="modal-body noteModalTitle">
+      </div>
+
+      <div class="modal-body noteModalBody">
+          {{!-- <ul id='noteList'></ul> --}}
+      </div>
+
+      <div class="modal-body noteModalForm">
+          <form>
+              <div class="form-group">
+                  <label for="titleInput">Note Title</label>
+                  <input id="titleInput" name="title">
+              </div>
+              <div class="form-group">
+                  <label for="bodyInput">Note Text</label>
+                  <textarea id="bodyInput" name="body"></textarea>
+              </div>
+          </form>
+          <button class="btn-primary saveNoteButton">Save Note</button>
+          <div class="alertDiv"></div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary closeModalButton" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    

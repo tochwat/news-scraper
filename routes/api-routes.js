@@ -75,6 +75,15 @@ module.exports = function (app) {
             })
 
     });
+
+
+    //Route for getting all notes
+    app.get("/api/notes/all", function (req, res) {
+        db.Note.find({
+        }).then(function (response) {
+            res.json(response)
+        })
+    });
     
     // Route for getting all Articles from the db
     app.get("/api/articles", function(req, res) {
@@ -105,6 +114,7 @@ module.exports = function (app) {
             res.json(err);
         });
     });
+
     
     // Route for saving/updating an Article's associated Note
     app.post("/api/articles/:id", function(req, res) {
@@ -127,7 +137,7 @@ module.exports = function (app) {
     });
 
 
-    //save article ID for list of saved articles
+    //save article using ID for list of saved articles
     app.put("/api/save/article/:id", (req, res) => {
         let articleId = req.params.id;
         db.Article.findOneAndUpdate({
@@ -142,6 +152,50 @@ module.exports = function (app) {
     });
 
 
+    //delete article using ID from list of saved articles
+    app.put("/api/delete/article/:id", (req, res) => {
+        let articleId = req.params.id;
+        db.Article.findOneAndUpdate({
+            _id: articleId
+        }, {
+            $set: {
+                saved: false
+            }
+        }).then(function (result) {
+            res.json(result)
+        })
+    });
+
+    //route for finding note for specific article
+    app.get("/api/notes/:id", (req, res) => {
+        let articleId = req.params.id;
+        db.Article.findOne({
+            _id: articleId
+        })
+        .populate('note')
+        .then((result) => {
+            res.json(result)
+        })
+    });
+
+
+    //route for creating new notes
+    app.post("/api/create/notes/:id", (req, res) => {
+        db.Note.create(req.body)
+            .then(function (dbNote) {
+                return db.Article.findOneAndUpdate({
+                    _id: req.params.id
+                }, {
+                    note: dbNote._id
+                }, {
+                    new: true
+                });
+            }).then(function (result) {
+                res.json(result);
+            }).catch(function (err) {
+                res.json(err);
+            });
+    })
     
     // delete
     app.delete("/api/reduce", (req, res) => {
