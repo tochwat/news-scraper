@@ -10,8 +10,16 @@ var NoteSchema = new Schema({
   	type: String
   }, 
   body: {
-  	type: String
+    type: String
   }
+  // },
+  // `articleId` is an object that stores an article id
+  // The ref property links the ObjectId to the Article model
+  // This allows us to populate the Note with an associated Article
+  // articleId: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "Article"
+  // }
 });
 
 // This creates our model from the above schema, using mongoose's model method

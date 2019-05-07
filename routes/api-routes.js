@@ -176,6 +176,17 @@ module.exports = function (app) {
         .then((result) => {
             res.json(result)
         })
+        // db.Note.find({
+        //     $query: {
+        //         articleId: articleId
+        //     }
+        // }).then(function (response) {
+        //     res.json(response)
+        // })
+
+
+
+
     });
 
 

@@ -73,14 +73,19 @@ $(function() {
 
     //create event listener for save note button
     $('.saveNoteButton').on('click', function(event) {
+        console.log($(this));
         let articleId = $(this).data('id');
+        // let idString = JSON.stringify(articleId);
+        console.log("printing id");
+        console.log(articleId);
 
         //ajax call to create new note in db
         $.ajax('/api/create/notes/' + articleId, {
             type: 'POST',
             data: {
                 title: $('#titleInput').val(),
-                body: $('#bodyInput').val()
+                body: $('#bodyInput').val(),
+                articleId: articleId
             }
         }).then(function(result) {
             let noteAdded = $('<p class="noteAlert">Your note has been saved</p>');
@@ -90,6 +95,27 @@ $(function() {
         })
 
 
+    });
+
+
+    //create event listener for delete button
+    $(document).on("click", ".deleteNoteButton", function() {
+        console.log("delete button clicked!");
+        event.preventDefault();
+        //ajax call to delete note 
+        
+        // $.ajax({
+        //     method:'DELETE',
+        //     url:'/tasks/' + $("#link").attr('data-mongo-id'),
+      
+        //       success : function( data) {
+        //         console.log('success');
+        //      },
+        //     error : function() {
+        //       console.log('error');
+      
+        //     }
+        //   })
     })
 
 
