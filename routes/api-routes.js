@@ -165,8 +165,23 @@ module.exports = function (app) {
         })
         .populate('note')
         .then((result) => {
+            console.log("This is the notes api result: ");
+            console.log(result);
             res.json(result)
         })
+
+        //From TA: we are now finding by note where the id equals the specific article
+        // let articleId = req.params.id;
+        // db.Note.find({
+        //     _articleId: articleId
+        // })
+        // .populate('note')
+        // .then((result) => {
+        //     console.log("This is the notes get api-route result: ");
+        //     console.log(result);
+        //     res.json(result)
+        // })
+
         // db.Note.find({
         //     $query: {
         //         articleId: articleId
@@ -174,9 +189,6 @@ module.exports = function (app) {
         // }).then(function (response) {
         //     res.json(response)
         // })
-
-
-
 
     });
 

@@ -35,14 +35,18 @@ $(function() {
             type: "GET"
         }).then(function(result) {
             console.log("Ajax call has completed");
+
             //append the article title to the modal body
             $('.noteModalTitle').append(`<h2>${result.title}</h2>`);
             $('.saveNoteButton').attr("data-id", result._id)
 
             //display existing notes
+            console.log("Here is the notes AJAX call result: ");
             console.log(result);
-            console.log("Result note length: ");
-            console.log(result.note.length);
+
+            // console.log("Result note length: ");
+            // console.log(result.note.length);
+
             // for (let i=0; i<result.note.length; i++) {
                 console.log("Notes are interating");
                 let newCard = $(`
@@ -85,7 +89,8 @@ $(function() {
             data: {
                 title: $('#titleInput').val(),
                 body: $('#bodyInput').val(),
-                articleId: articleId
+                _articleId: articleId
+                // _articleTitle: 
             }
         }).then(function(result) {
             let noteAdded = $('<p class="noteAlert">Your note has been saved</p>');
