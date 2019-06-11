@@ -1,15 +1,9 @@
 # news-scraper
-A web app using express, mongo, cheerio and axios that lets users view and leave comments on a news feed. 
 
-The app scrapes stories from NPR News and displays them for the user. Each scraped article is saved to the application database. The app will scrape and display the following information for each article:
+View project: https://news-scraper-2019to.herokuapp.com/
 
+This web app uses express, mongo, cheerio and axios to let you scrape articles from NPR News, save articles and leave comments on saved articles.
 
- * Headline
+The app scrapes stories from the NPR News website and displays them for the user on the main page once the scrape button is pressed. Each scraped article is saved to the application database. The app scrapes and displays the headline, summary, URL and photo for each article:
 
- * Summary
-
- * URL 
- 
- * Photo
-
-Users can also leave comments on the articles displayed and revisit them later. The comments are saved to the database as well and associated with their articles. Users can also delete comments left on articles. All stored comments are visible to every user.
+You can also leave comments on the articles saved. The comments are saved to the database as well and associated with their articles. All stored comments are visible to every user.
